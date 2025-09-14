@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassManager - Sistema de Gestão de Aulas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Tela de Login -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>ClassManager</h1>
+                <p>Sistema de Gestão de Aulas</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+            <div class="login-info">
+                <p><strong>Usuários de teste:</strong></p>
+                <p>Admin: admin / senha123</p>
+                <p>Professor: prof.marcos / senha123</p>
+                <p>Aluno: ana.souza / senha123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Painel do Administrador -->
+    <div id="admin-screen" class="screen">
+        <header class="header">
+            <h1>ClassManager - Administração</h1>
+            <div class="user-info">
+                <span>Bem-vindo, Cláudia Silva</span>
+                <button id="logout-btn" class="btn btn-secondary">Sair</button>
+            </div>
+        </header>
+        
+        <nav class="admin-nav">
+            <button class="nav-btn active" data-section="turmas">Turmas</button>
+            <button class="nav-btn" data-section="professores">Professores</button>
+            <button class="nav-btn" data-section="alunos">Alunos</button>
+        </nav>
+
+        <main class="main-content">
+            <!-- Seção Turmas -->
+            <section id="turmas-section" class="content-section active">
+                <div class="section-header">
+                    <h2>Gerenciar Turmas</h2>
+                    <button id="add-turma-btn" class="btn btn-primary">Nova Turma</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Ano</th>
+                                <th>Período</th>
+                                <th>Professor</th>
+                                <th>Alunos</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="turmas-table-body">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Seção Professores -->
+            <section id="professores-section" class="content-section">
+                <div class="section-header">
+                    <h2>Gerenciar Professores</h2>
+                    <button id="add-professor-btn" class="btn btn-primary">Novo Professor</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Disciplina</th>
+                                <th>Turmas</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="professores-table-body">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Seção Alunos -->
+            <section id="alunos-section" class="content-section">
+                <div class="section-header">
+                    <h2>Gerenciar Alunos</h2>
+                    <button id="add-aluno-btn" class="btn btn-primary">Novo Aluno</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Turma</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alunos-table-body">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Painel do Professor -->
+    <div id="teacher-screen" class="screen">
+        <header class="header">
+            <h1>ClassManager - Professor</h1>
+            <div class="user-info">
+                <span>Bem-vindo, Marcos Oliveira</span>
+                <button id="logout-btn-teacher" class="btn btn-secondary">Sair</button>
+            </div>
+        </header>
+        
+        <nav class="teacher-nav">
+            <button class="nav-btn active" data-section="minhas-turmas">Minhas Turmas</button>
+            <button class="nav-btn" data-section="chamada">Chamada</button>
+            <button class="nav-btn" data-section="notas">Notas</button>
+        </nav>
+
+        <main class="main-content">
+            <!-- Seção Minhas Turmas -->
+            <section id="minhas-turmas-section" class="content-section active">
+                <div class="section-header">
+                    <h2>Minhas Turmas</h2>
+                </div>
+                <div class="turmas-grid" id="teacher-turmas-grid">
+                    <!-- Turmas serão inseridas via JavaScript -->
+                </div>
+            </section>
+
+            <!-- Seção Chamada -->
+            <section id="chamada-section" class="content-section">
+                <div class="section-header">
+                    <h2>Lançar Chamada</h2>
+                    <div class="chamada-controls">
+                        <select id="turma-chamada-select">
+                            <option value="">Selecione uma turma</option>
+                        </select>
+                        <input type="date" id="data-chamada" class="date-input">
+                        <button id="salvar-chamada-btn" class="btn btn-primary">Salvar Chamada</button>
+                    </div>
+                </div>
+                <div class="chamada-container" id="chamada-container">
+                    <p>Selecione uma turma e data para lançar a chamada</p>
+                </div>
+            </section>
+
+            <!-- Seção Notas -->
+            <section id="notas-section" class="content-section">
+                <div class="section-header">
+                    <h2>Lançar Notas</h2>
+                    <div class="notas-controls">
+                        <select id="turma-notas-select">
+                            <option value="">Selecione uma turma</option>
+                        </select>
+                        <select id="tipo-nota-select">
+                            <option value="nota1">Nota 1</option>
+                            <option value="nota2">Nota 2</option>
+                            <option value="media">Média Final</option>
+                        </select>
+                        <button id="salvar-notas-btn" class="btn btn-primary">Salvar Notas</button>
+                    </div>
+                </div>
+                <div class="notas-container" id="notas-container">
+                    <p>Selecione uma turma para lançar as notas</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Painel do Aluno -->
+    <div id="student-screen" class="screen">
+        <header class="header">
+            <h1>ClassManager - Aluno</h1>
+            <div class="user-info">
+                <span>Bem-vindo, Ana Souza</span>
+                <button id="logout-btn-student" class="btn btn-secondary">Sair</button>
+            </div>
+        </header>
+        
+        <nav class="student-nav">
+            <button class="nav-btn active" data-section="minha-turma">Minha Turma</button>
+            <button class="nav-btn" data-section="presencas">Presenças</button>
+            <button class="nav-btn" data-section="minhas-notas">Notas</button>
+        </nav>
+
+        <main class="main-content">
+            <!-- Seção Minha Turma -->
+            <section id="minha-turma-section" class="content-section active">
+                <div class="section-header">
+                    <h2>Minha Turma</h2>
+                </div>
+                <div class="turma-info" id="student-turma-info">
+                    <!-- Informações da turma serão inseridas via JavaScript -->
+                </div>
+            </section>
+
+            <!-- Seção Presenças -->
+            <section id="presencas-section" class="content-section">
+                <div class="section-header">
+                    <h2>Histórico de Presenças</h2>
+                </div>
+                <div class="presencas-container" id="presencas-container">
+                    <!-- Histórico de presenças será inserido via JavaScript -->
+                </div>
+            </section>
+
+            <!-- Seção Notas -->
+            <section id="minhas-notas-section" class="content-section">
+                <div class="section-header">
+                    <h2>Minhas Notas</h2>
+                </div>
+                <div class="notas-aluno-container" id="notas-aluno-container">
+                    <!-- Notas do aluno serão inseridas via JavaScript -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modais -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Título</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Conteúdo do modal será inserido via JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button id="modal-cancel" class="btn btn-secondary">Cancelar</button>
+                <button id="modal-save" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
