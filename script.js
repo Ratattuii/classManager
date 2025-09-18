@@ -48,7 +48,10 @@ let currentScreen = 'login';
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
+    // Aguardar um pouco mais para garantir que todos os elementos estejam carregados
+    setTimeout(() => {
+        initializeApp();
+    }, 100);
 });
 
 function initializeApp() {
@@ -58,12 +61,20 @@ function initializeApp() {
 
 function setupEventListeners() {
     // Login
-    document.getElementById('login-form').addEventListener('submit', handleLogin);
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+    }
     
     // Logout
-    document.getElementById('logout-btn').addEventListener('click', logout);
-    document.getElementById('logout-btn-teacher').addEventListener('click', logout);
-    document.getElementById('logout-btn-student').addEventListener('click', logout);
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) logoutBtn.addEventListener('click', logout);
+    
+    const logoutBtnTeacher = document.getElementById('logout-btn-teacher');
+    if (logoutBtnTeacher) logoutBtnTeacher.addEventListener('click', logout);
+    
+    const logoutBtnStudent = document.getElementById('logout-btn-student');
+    if (logoutBtnStudent) logoutBtnStudent.addEventListener('click', logout);
     
     // Navegação Admin
     document.querySelectorAll('.admin-nav .nav-btn').forEach(btn => {
@@ -81,20 +92,37 @@ function setupEventListeners() {
     });
     
     // Botões de adicionar
-    document.getElementById('add-turma-btn').addEventListener('click', () => showModal('Nova Turma', createTurmaForm()));
-    document.getElementById('add-professor-btn').addEventListener('click', () => showModal('Novo Professor', createProfessorForm()));
-    document.getElementById('add-aluno-btn').addEventListener('click', () => showModal('Novo Aluno', createAlunoForm()));
+    const addTurmaBtn = document.getElementById('add-turma-btn');
+    if (addTurmaBtn) addTurmaBtn.addEventListener('click', () => showModal('Nova Turma', createTurmaForm()));
+    
+    const addProfessorBtn = document.getElementById('add-professor-btn');
+    if (addProfessorBtn) addProfessorBtn.addEventListener('click', () => showModal('Novo Professor', createProfessorForm()));
+    
+    const addAlunoBtn = document.getElementById('add-aluno-btn');
+    if (addAlunoBtn) addAlunoBtn.addEventListener('click', () => showModal('Novo Aluno', createAlunoForm()));
     
     // Controles de chamada e notas
-    document.getElementById('turma-chamada-select').addEventListener('change', loadChamada);
-    document.getElementById('turma-notas-select').addEventListener('change', loadNotas);
-    document.getElementById('salvar-chamada-btn').addEventListener('click', salvarChamada);
-    document.getElementById('salvar-notas-btn').addEventListener('click', salvarNotas);
+    const turmaChamadaSelect = document.getElementById('turma-chamada-select');
+    if (turmaChamadaSelect) turmaChamadaSelect.addEventListener('change', loadChamada);
+    
+    const turmaNotasSelect = document.getElementById('turma-notas-select');
+    if (turmaNotasSelect) turmaNotasSelect.addEventListener('change', loadNotas);
+    
+    const salvarChamadaBtn = document.getElementById('salvar-chamada-btn');
+    if (salvarChamadaBtn) salvarChamadaBtn.addEventListener('click', salvarChamada);
+    
+    const salvarNotasBtn = document.getElementById('salvar-notas-btn');
+    if (salvarNotasBtn) salvarNotasBtn.addEventListener('click', salvarNotas);
     
     // Modal
-    document.getElementById('modal-cancel').addEventListener('click', hideModal);
-    document.getElementById('modal-close').addEventListener('click', hideModal);
-    document.getElementById('modal-save').addEventListener('click', saveModalData);
+    const modalCancel = document.getElementById('modal-cancel');
+    if (modalCancel) modalCancel.addEventListener('click', hideModal);
+    
+    const modalClose = document.getElementById('modal-close');
+    if (modalClose) modalClose.addEventListener('click', hideModal);
+    
+    const modalSave = document.getElementById('modal-save');
+    if (modalSave) modalSave.addEventListener('click', saveModalData);
 }
 
 function handleLogin(e) {
@@ -134,7 +162,13 @@ function showScreen(screenName) {
         'student': 'student-screen'
     };
     
-    document.getElementById(screenMap[screenName]).classList.add('active');
+    const targetScreen = screenMap[screenName];
+    const screenElement = document.getElementById(targetScreen);
+    
+    if (screenElement) {
+        screenElement.classList.add('active');
+    }
+    
     currentScreen = screenName;
 }
 

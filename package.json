@@ -1,0 +1,12 @@
+{
+  "name": "classmanager",
+  "version": "1.0.0",
+  "description": "**O que funciona bem:**\r - A integração com o Google é boa demais - se tu já usa Gmail, Drive, etc, fica tudo junto\r - A interface é simples, qualquer professor pega na hora\r - Distribuir tarefa é direto, os alunos recebem na hora\r - É de graça, o que é um diferencial e tanto pra escola pública",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

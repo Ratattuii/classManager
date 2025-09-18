@@ -32,11 +32,15 @@ body {
 
 /* Tela de Login */
 #login-screen {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+#login-screen.active {
+    display: flex;
 }
 
 .login-container {
@@ -163,6 +167,11 @@ body {
 
 .screen.active {
     display: block;
+}
+
+/* Tela de login específica */
+#login-screen.active {
+    display: flex;
 }
 
 /* Header */
